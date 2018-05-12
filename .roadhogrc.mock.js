@@ -13,11 +13,43 @@ const noProxy = process.env.NO_PROXY === 'true';
 //   "list|100": [{ name: "@city", "value|1-100": 150, "type|0-2": 1 }]
 // }),
 
+// 样式
+const styles = {
+  name: { fontSize: '14px', opacity: 0.7 },
+  label: { fontWeight: 'bold', paddingLeft: '10px' },
+  type: { color: '#D60', fontWeight: 'bold', paddingLeft: '10px' },
+  desc: { paddingLeft: '10px' },
+};
+// 接口响应Format
+const getFormat = [
+  <h3 key="h3-1">
+    <span style={styles.name}>返回状态:</span>
+    <span style={styles.label}>isSuccessed</span>
+    <span style={styles.type}>[Boolean]</span>
+    <span style={styles.desc} />
+  </h3>,
+  <h3 key="h3-2">
+    <span style={styles.name}>返回描述:</span>
+    <span style={styles.label}>message</span>
+    <span style={styles.type}>[String]</span>
+    <span style={styles.desc} />
+  </h3>,
+  <h3 key="h3-3">
+    <span style={styles.name}>返回数据:</span>
+    <span style={styles.label}>extData</span>
+    <span style={styles.type}>[Array]</span>
+    <span style={styles.desc} />
+  </h3>,
+];
+// 获取接口描述的函数
+const getDesc = (apiSort, apiDesc, apiFormat = getFormat) =>
+  [<h2 key="h2-1">{`${apiSort} ${apiDesc}`}</h2>].concat(apiFormat);
+
 const proxy = {
   // [客户服务监控]
   // 获取扩频表 > 扩频表列表
   'GET /api/custom/fetchspread': {
-    $desc: [<h2>{`${apiCustom} 获取扩频表的列表数据`}</h2>],
+    $desc: getDesc(apiCustom, '获取扩频表的列表数据'),
     $params: {
       pageSize: {
         desc: `每页条数: ${typeNumber}`,
@@ -29,27 +61,24 @@ const proxy = {
       },
     },
     $body: {
-      status: 1,
+      isSuccessed: true,
       message: '获取数据成功',
-      extData: {
-        count: 1,
-        data: [
-          {
-            id: 'KXXX5678',
-            company: '四川海力智能燃气示范公司',
-            method: '自动',
-            status: 1,
-            uptime: '2018-04-27 15:51:25',
-            duty: {
-              department: '技术中心',
-              name: '鱼子酱',
-              phone: '028-12345678',
-              tel: '13912345678',
-              email: '12345678@qq.com',
-            },
+      extData: [
+        {
+          id: 'KXXX5678',
+          company: '四川海力智能燃气示范公司',
+          method: '自动',
+          status: 1,
+          uptime: '2018-04-27 15:51:25',
+          duty: {
+            department: '技术中心',
+            name: '鱼子酱',
+            phone: '028-12345678',
+            tel: '13912345678',
+            email: '12345678@qq.com',
           },
-        ],
-      },
+        },
+      ],
     },
   },
   // 获取集中器列表
