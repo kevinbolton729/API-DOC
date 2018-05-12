@@ -17,7 +17,7 @@ const proxy = {
   // [客户服务监控]
   // 获取扩频表 > 扩频表列表
   'GET /api/custom/fetchspread': {
-    $desc: `${apiCustom} 获取扩频表的列表数据`,
+    $desc: [<h2>{`${apiCustom} 获取扩频表的列表数据`}</h2>],
     $params: {
       pageSize: {
         desc: `每页条数: ${typeNumber}`,
