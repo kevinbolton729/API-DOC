@@ -64,11 +64,10 @@ const proxy = {
       message: '获取数据成功',
       extData: [
         {
-          id: 'KXXX5678',
+          companyCode: 'KXXX5678',
           company: '四川海力智能燃气示范公司',
           method: '自动',
-          status: 1,
-          uptime: '2018-04-27 15:51:25',
+          status: '正常',
           duty: {
             department: '技术中心',
             name: '鱼子酱',
@@ -76,6 +75,34 @@ const proxy = {
             tel: '13912345678',
             email: '12345678@qq.com',
           },
+          directive: [
+            {
+              code: 'ZL00010001',
+              type: '开户指令',
+              des: '用户已支付',
+              step: 0,
+              status: 1,
+              updateAt: '1520868257592',
+            },
+            {
+              code: 'ZL00010002',
+              type: '充值指令',
+              des: '用户已支付',
+              step: 3,
+              status: 0,
+              updateAt: '1520868257592',
+            },
+            {
+              code: 'ZL00010001',
+              type: '充值指令',
+              des: '充值成功',
+              step: 4,
+              status: 1,
+              updateAt: '1520868257592',
+            },
+          ],
+          updateAt: '1520868257592',
+          createAt: '1520868257592',
         },
       ],
     },
