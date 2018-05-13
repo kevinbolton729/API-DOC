@@ -81,7 +81,7 @@ const proxy = {
     },
   },
   // 获取集中器列表
-  'GET /api/fetchconcentrator': {
+  'GET /api/custom/fetchconcentrator': {
     $desc: getDesc(apiCustom, '获取集中器的列表数据'),
     $params: {
       pageSize: {
@@ -111,7 +111,7 @@ const proxy = {
     },
   },
   // 获取扩频表 > 发货记录列表
-  'GET /api/fetchshipping': {
+  'GET /api/custom/fetchshipping': {
     $desc: getDesc(apiCustom, '获取扩频表:发货记录的列表数据'),
     $params: {
       pageSize: {
@@ -139,7 +139,7 @@ const proxy = {
     },
   },
   // 获取物联网表 > 物联网表列表
-  'GET /api/fetchnblot': {
+  'GET /api/custom/fetchnblot': {
     $desc: getDesc(apiCustom, '获取物联网表的列表数据'),
     $params: {
       pageSize: {
@@ -173,7 +173,7 @@ const proxy = {
     },
   },
   // 获取物联网表 > 发货记录列表
-  'GET /api/fetchnblotshipping': {
+  'GET /api/custom/nblot/fetchshipping': {
     $desc: getDesc(apiCustom, '获取物联网表:发货记录的列表数据'),
     $params: {
       pageSize: {
@@ -201,7 +201,7 @@ const proxy = {
     },
   },
   // 获取异常报警 > 扩频表列表
-  'GET /api/fetchunusualspread': {
+  'GET /api/custom/unusual/fetchspread': {
     $desc: getDesc(apiCustom, '获取扩频表:异常报警的列表数据'),
     $params: {
       pageSize: {
@@ -229,7 +229,7 @@ const proxy = {
     },
   },
   // 获取异常报警 > 物联网表列表
-  'GET /api/fetchunusualnblot': {
+  'GET /api/custom/unusual/fetchnblot': {
     $desc: getDesc(apiCustom, '获取物联网表:异常报警的列表数据'),
     $params: {
       pageSize: {
@@ -258,7 +258,7 @@ const proxy = {
   },
   // [业务数据监控]
   // 获取扩频表 > 扩频表列表
-  'GET /api/fetchdataspread': {
+  'GET /api/monitor/fetchspread': {
     $desc: getDesc(apiDataMonitor, '获取扩频表的列表数据'),
     $params: {
       pageSize: {
@@ -292,7 +292,7 @@ const proxy = {
     },
   },
   // 获取集中器列表
-  'GET /api/fetchdataconcentrator': {
+  'GET /api/monitor/fetchconcentrator': {
     $desc: getDesc(apiDataMonitor, '获取集中器的列表数据'),
     $params: {
       pageSize: {
@@ -322,7 +322,7 @@ const proxy = {
     },
   },
   // 获取物联网表 > 物联网表列表
-  'GET /api/fetchdatanblot': {
+  'GET /api/monitor/fetchdatanblot': {
     $desc: getDesc(apiDataMonitor, '获取物联网的列表数据'),
     $params: {
       pageSize: {
@@ -356,7 +356,7 @@ const proxy = {
     },
   },
   // 更新配置
-  'POST /api/spread/fetchconfig': {
+  'POST /api/monitor/spread/fetchconfig': {
     $desc: getDesc(apiDataMonitor, '更新配置'),
     $params: {},
     $body: {
@@ -367,7 +367,7 @@ const proxy = {
   },
   // [燃气公司运营]
   // 获取公司列表
-  'GET /api/fetchdatacompany': {
+  'GET /api/company/fetchdatacompany': {
     $desc: getDesc(apiCompany, '获取燃气公司的列表数据'),
     $params: {
       pageSize: {
@@ -392,6 +392,16 @@ const proxy = {
           status: '正常',
         },
       ],
+    },
+  },
+  // 更新配置
+  'POST /api/company/fetchconfig': {
+    $desc: getDesc(apiCompany, '更新配置'),
+    $params: {},
+    $body: {
+      isSuccessed: true,
+      message: '已保存配置',
+      extData: [],
     },
   },
 };
