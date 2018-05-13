@@ -322,7 +322,7 @@ const proxy = {
     },
   },
   // 获取物联网表 > 物联网表列表
-  'GET /api/monitor/fetchdatanblot': {
+  'GET /api/monitor/fetchnblot': {
     $desc: getDesc(apiDataMonitor, '获取物联网的列表数据'),
     $params: {
       pageSize: {
@@ -367,7 +367,7 @@ const proxy = {
   },
   // [燃气公司运营]
   // 获取公司列表
-  'GET /api/company/fetchdatacompany': {
+  'GET /api/company/fetchcompany': {
     $desc: getDesc(apiCompany, '获取燃气公司的列表数据'),
     $params: {
       pageSize: {
