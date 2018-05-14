@@ -1,6 +1,13 @@
 import mockjs from 'mockjs';
 import { delay } from 'roadhog-api-doc';
-import { apiCustom, apiDataMonitor, apiCompany, typeNumber, messageSuccess } from './mock/fields';
+import {
+  apiCustom,
+  apiDataMonitor,
+  apiCompany,
+  typeNumber,
+  messageSuccess,
+  saveSuccess,
+} from './mock/fields';
 // 数据
 import {
   spreadData,
