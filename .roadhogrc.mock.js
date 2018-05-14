@@ -1,6 +1,8 @@
 import mockjs from 'mockjs';
 import { delay } from 'roadhog-api-doc';
 import { apiCustom, apiDataMonitor, apiCompany, typeNumber } from './mock/fields';
+// 数据
+import { spreadData, nblotData } from './mock/datas';
 
 // 是否禁用代理
 const noProxy = process.env.NO_PROXY === 'true';
@@ -62,49 +64,7 @@ const proxy = {
     $body: {
       isSuccessed: true,
       message: '获取数据成功',
-      extData: [
-        {
-          companyCode: 'KXXX5678',
-          company: '四川海力智能燃气示范公司',
-          method: '自动',
-          status: '正常',
-          duty: {
-            department: '技术中心',
-            name: '鱼子酱',
-            phone: '028-12345678',
-            tel: '13912345678',
-            email: '12345678@qq.com',
-          },
-          directive: [
-            {
-              code: 'ZL00010001',
-              type: '开户指令',
-              des: '用户已支付',
-              step: 0,
-              status: 1,
-              updateAt: '1520868257592',
-            },
-            {
-              code: 'ZL00010002',
-              type: '充值指令',
-              des: '用户已支付',
-              step: 3,
-              status: 0,
-              updateAt: '1520868257592',
-            },
-            {
-              code: 'ZL00010001',
-              type: '充值指令',
-              des: '充值成功',
-              step: 4,
-              status: 1,
-              updateAt: '1520868257592',
-            },
-          ],
-          updateAt: '1520868257592',
-          createAt: '1520868257592',
-        },
-      ],
+      extData: spreadData,
     },
   },
   // 获取集中器列表
@@ -181,22 +141,7 @@ const proxy = {
     $body: {
       isSuccessed: true,
       message: '获取数据成功',
-      extData: [
-        {
-          id: 'WXXX5678',
-          company: '四川海力智能燃气示范公司',
-          online: '在线',
-          status: '成功',
-          time: '2018-04-27 15:51:25',
-          duty: {
-            department: '技术中心',
-            name: '鱼子酱',
-            phone: '028-12345678',
-            tel: '13912345678',
-            email: '12345678@qq.com',
-          },
-        },
-      ],
+      extData: nblotData,
     },
   },
   // 获取物联网表 > 发货记录列表
@@ -300,22 +245,7 @@ const proxy = {
     $body: {
       isSuccessed: true,
       message: '获取数据成功',
-      extData: [
-        {
-          id: 'KXXX1234',
-          company: '四川海力智能燃气示范公司',
-          method: '自动',
-          status: 1,
-          uptime: '2018-04-27 15:51:25',
-          duty: {
-            department: '技术中心',
-            name: '鱼子酱',
-            phone: '028-12345678',
-            tel: '13912345678',
-            email: '12345678@qq.com',
-          },
-        },
-      ],
+      extData: spreadData,
     },
   },
   // 获取集中器列表
@@ -364,22 +294,7 @@ const proxy = {
     $body: {
       isSuccessed: true,
       message: '获取数据成功',
-      extData: [
-        {
-          id: 'WXXX1234',
-          company: '四川海力智能燃气示范公司',
-          online: '在线',
-          status: '成功',
-          time: '2018-04-27 15:51:25',
-          duty: {
-            department: '技术中心',
-            name: '鱼子酱',
-            phone: '028-12345678',
-            tel: '13912345678',
-            email: '12345678@qq.com',
-          },
-        },
-      ],
+      extData: nblotData,
     },
   },
   // 更新配置
