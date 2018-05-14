@@ -36,11 +36,11 @@ export const typeUnix13 = `[${fieldType}: ${unix13}]`; // eg.[字段类型: Unix
 
 // 字段定义
 const fields = {
+  createAt: typeUnix13,
+  updateAt: typeUnix13,
   detail: '详情',
   city: `省份/城市 ${typeString} eg.四川/成都`,
   description: `备注说明 ${typeString} ps:${wordLimit}`,
-  createAt: typeUnix13,
-  updateAt: typeUnix13,
   // 燃气用户
   user: '燃气用户',
   userName: `用户姓名 ${typeString}`,

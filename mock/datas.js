@@ -1,4 +1,4 @@
-import fields, { typeNumber, typeString, wordLimit } from './fields';
+import fields, { wordLimit } from './fields';
 
 // 责任部门（或责任人）
 const dutyCollection = {
@@ -12,23 +12,23 @@ const dutyCollection = {
 // duty
 export const dutyParams = {
   department: {
-    desc: `部门 ${typeString}`,
+    desc: fields.department,
     exp: '技术中心(办公室)',
   },
   name: {
-    desc: `姓名 ${typeString}`,
+    desc: fields.name,
     exp: '鱼子酱',
   },
   phone: {
-    desc: `办公电话 ${typeString}`,
+    desc: fields.phone,
     exp: '028-12345678',
   },
   tel: {
-    desc: `手机号码 ${typeString}`,
+    desc: fields.tel,
     exp: '13912345678',
   },
   email: {
-    desc: `电子邮箱 ${typeString}`,
+    desc: fields.email,
     exp: 'example123@qq.com',
   },
 };
@@ -36,48 +36,48 @@ export const dutyParams = {
 export const businessParams = {
   // 燃气公司
   description: {
-    desc: `备注说明 ${typeString}`,
+    desc: fields.description,
     exp: `(${wordLimit})`,
   },
   // 系统详细
   sysName: {
-    desc: `系统名称 ${typeString}`,
+    desc: fields.sysName,
     exp: 'HL-6',
   },
   sysVersion: {
-    desc: `系统版本 ${typeString}`,
+    desc: fields.sysVersion,
     exp: '6.5',
   },
   getMethod: {
-    desc: `采集方式 ${typeNumber}`,
+    desc: fields.getMethod,
     exp: '0:静默定时 1:静默实时',
   },
   ip: {
-    desc: `IP地址 ${typeString}`,
+    desc: fields.ip,
     exp: '192.168.5.100',
   },
   port: {
-    desc: `端口号 ${typeString}`,
+    desc: fields.port,
     exp: '8080',
   },
   mac: {
-    desc: `MAC地址 ${typeString}`,
+    desc: fields.mac,
     exp: '00-00-00-00-00-00-00-E0',
   },
   sqlVersion: {
-    desc: `数据库版本 ${typeString}`,
+    desc: fields.sqlVersion,
     exp: 'MySQL 7.0',
   },
   readWrither: {
-    desc: `读写器型号 ${typeString}`,
+    desc: fields.readWrither,
     exp: 'RW-1.0',
   },
   otherDevices: {
-    desc: `其他设备型号 ${typeString}`,
+    desc: fields.otherDevices,
     exp: '',
   },
   dllVersion: {
-    desc: `DLL文件版本 ${typeString}`,
+    desc: fields.dllVersion,
     exp: 'DLL-1.1.0',
   },
 };
