@@ -1,8 +1,17 @@
 import mockjs from 'mockjs';
 import { delay } from 'roadhog-api-doc';
-import { apiCustom, apiDataMonitor, apiCompany, typeNumber } from './mock/fields';
+import { apiCustom, apiDataMonitor, apiCompany, typeNumber, messageSuccess } from './mock/fields';
 // 数据
-import { spreadData, nblotData } from './mock/datas';
+import {
+  spreadData,
+  nblotData,
+  concentratorData,
+  shippingData,
+  businessCompanyData,
+  unusualData,
+  dutyParams,
+  businessParams,
+} from './mock/datas';
 
 // 是否禁用代理
 const noProxy = process.env.NO_PROXY === 'true';
@@ -63,7 +72,7 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
+      message: messageSuccess,
       extData: spreadData,
     },
   },
@@ -82,19 +91,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'JXXX5678',
-          company: '四川海力智能燃气示范公司',
-          card: '正常',
-          cardtime: '2018-04-27 15:51:25',
-          online: '在线',
-          fact: 41,
-          plan: 50,
-          address: '四川省成都市成华区崔家店路 附102号',
-        },
-      ],
+      message: messageSuccess,
+      extData: concentratorData,
     },
   },
   // 获取扩频表 > 发货记录列表
@@ -112,17 +110,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'KXXX5678',
-          company: '四川海力智能燃气示范公司',
-          express: '顺丰快递',
-          expressid: 'SF12345678',
-          expresstime: '2018-04-27 15:51:25',
-          status: '正常',
-        },
-      ],
+      message: messageSuccess,
+      extData: shippingData,
     },
   },
   // 获取物联网表 > 物联网表列表
@@ -140,7 +129,7 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
+      message: messageSuccess,
       extData: nblotData,
     },
   },
@@ -159,17 +148,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'WXXX5678',
-          company: '四川海力智能燃气示范公司',
-          express: '顺丰快递',
-          expressid: 'SF12345678',
-          expresstime: '2018-04-27 15:51:25',
-          status: '正常',
-        },
-      ],
+      message: messageSuccess,
+      extData: shippingData,
     },
   },
   // 获取异常报警 > 扩频表列表
@@ -187,17 +167,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'KXXX5678',
-          company: '四川海力智能燃气示范公司',
-          method: '异常关阀',
-          num: 2,
-          datetime: '2018-04-27 15:51:25',
-          status: '正常',
-        },
-      ],
+      message: messageSuccess,
+      extData: unusualData,
     },
   },
   // 获取异常报警 > 物联网表列表
@@ -215,17 +186,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'WXXX5678',
-          company: '四川海力智能燃气示范公司',
-          method: '充值失败',
-          num: 1,
-          datetime: '2018-04-27 15:51:25',
-          status: '正常',
-        },
-      ],
+      message: messageSuccess,
+      extData: unusualData,
     },
   },
   // [业务数据监控]
@@ -244,7 +206,7 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
+      message: messageSuccess,
       extData: spreadData,
     },
   },
@@ -263,19 +225,8 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          id: 'JXXX1234',
-          company: '四川海力智能燃气示范公司',
-          card: '正常',
-          cardtime: '2018-04-27 15:51:25',
-          online: '在线',
-          fact: 41,
-          plan: 50,
-          address: '四川省成都市成华区崔家店路 附102号',
-        },
-      ],
+      message: messageSuccess,
+      extData: concentratorData,
     },
   },
   // 获取物联网表 > 物联网表列表
@@ -293,17 +244,27 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
+      message: messageSuccess,
       extData: nblotData,
     },
   },
-  // 更新配置
+  // 扩频表 - 更新配置
   'POST /api/monitor/spread/fetchconfig': {
     $desc: getDesc(apiDataMonitor, '更新配置'),
-    $params: {},
+    $params: dutyParams,
     $body: {
       isSuccessed: true,
-      message: '已保存配置',
+      message: saveSuccess,
+      extData: [],
+    },
+  },
+  // 物联网表 - 更新配置
+  'POST /api/monitor/nblot/fetchconfig': {
+    $desc: getDesc(apiDataMonitor, '更新配置'),
+    $params: dutyParams,
+    $body: {
+      isSuccessed: true,
+      message: saveSuccess,
       extData: [],
     },
   },
@@ -323,26 +284,17 @@ const proxy = {
     },
     $body: {
       isSuccessed: true,
-      message: '获取数据成功',
-      extData: [
-        {
-          companyCode: 'CXXX1234',
-          company: '四川海力智能燃气示范公司',
-          sysname: 'HL-6',
-          version: '6.0',
-          updatetime: '2018-04-27 15:51:25',
-          status: '正常',
-        },
-      ],
+      message: messageSuccess,
+      extData: businessCompanyData,
     },
   },
   // 更新配置
   'POST /api/company/fetchconfig': {
     $desc: getDesc(apiCompany, '更新配置'),
-    $params: {},
+    $params: businessParams,
     $body: {
       isSuccessed: true,
-      message: '已保存配置',
+      message: saveSuccess,
       extData: [],
     },
   },
