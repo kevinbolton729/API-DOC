@@ -252,3 +252,18 @@ export const businessCompanyData = [
     updateAt: `更新时间 ${fields.updateAt}`,
   },
 ];
+
+// 登录用户信息（资料）
+export const userData = [
+  {
+    userid: fields.userid,
+    nickname: fields.nickname,
+    portrait: fields.portrait,
+    role: fields.role,
+    sex: fields.sex,
+    tel: fields.tel,
+    email: fields.email,
+    createAt: `创建时间 ${fields.createAt}`,
+    updateAt: `更新时间 ${fields.updateAt}`,
+  },
+];

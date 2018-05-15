@@ -1,4 +1,9 @@
 const group = {
+  login: '用户登录',
+  loginout: '用户安全退出',
+  user: '用户信息（资料）',
+  updateUser: '修改用户信息（资料）',
+  updatePwd: '修改登录密码',
   dataMonitor: '业务数据监控',
   custom: '客户服务监控',
   company: '燃气公司运营',
@@ -19,9 +24,18 @@ const fieldType = `${field}${type}`;
 // 文字信息
 export const messageSuccess = '获取数据成功';
 export const saveSuccess = '已保存配置';
+export const loginSuccess = '登录成功';
+export const loginOutSuccess = '已安全退出';
+export const updatePwdSuccess = '登录密码已修改';
+export const updateSuccess = '更新成功';
 // 字数限制
 export const wordLimit = '字数不超过200字';
 // 接口
+export const apiLogin = `[${group.login}] ${api}:`; // eg.[用户登录] 接口:
+export const apiLoginOut = `[${group.loginout}] ${api}:`; // eg.[用户安全退出] 接口:
+export const apiGetUser = `[${group.user}] ${api}:`; // eg.[用户信息（资料）] 接口:
+export const apiUpdatePwd = `[${group.updatePwd}] ${api}:`; // eg.[修改登录密码] 接口:
+export const apiUpdateUser = `[${group.updateUser}] ${api}:`; // eg.[修改用户信息（资料）] 接口:
 export const apiCustom = `[${group.custom}] ${api}:`; // eg.[客户服务监控] 接口:
 export const apiDataMonitor = `[${group.dataMonitor}] ${api}:`; // eg.[业务数据监控] 接口:
 export const apiCompany = `[${group.company}] ${api}:`; // eg.[燃气公司运营] 接口:
@@ -124,5 +138,11 @@ const fields = {
   otherDevices: `其他设备型号 ${typeString}`,
   dllVersion: `DLL文件版本 ${typeString}`,
   getDataAt: `采集数据时间 ${typeUnix13}`,
+  // 登录用户信息（资料）
+  userid: `登录用户编码 ${typeString}`,
+  nickname: `用户昵称(界面显示) ${typeString}`,
+  portrait: `头像地址 ${typeString}`,
+  role: `用户权限 ${typeNumber}`,
+  sex: `用户权限 ${typeNumber} eg. 0:女 1:男`,
 };
 export default fields;

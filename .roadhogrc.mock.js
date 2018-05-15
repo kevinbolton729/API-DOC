@@ -1,12 +1,22 @@
 import mockjs from 'mockjs';
 import { delay } from 'roadhog-api-doc';
 import {
+  apiLogin,
+  apiLoginOut,
+  apiGetUser,
+  apiUpdateUser,
+  apiUpdatePwd,
   apiCustom,
   apiDataMonitor,
   apiCompany,
   typeNumber,
+  typeString,
   messageSuccess,
   saveSuccess,
+  loginSuccess,
+  loginOutSuccess,
+  updatePwdSuccess,
+  updateSuccess,
 } from './mock/fields';
 // 数据
 import {
@@ -16,6 +26,7 @@ import {
   shippingData,
   businessCompanyData,
   unusualData,
+  userData,
   dutyParams,
   businessParams,
 } from './mock/datas';
@@ -34,7 +45,7 @@ const styles = {
 const getFormat = [
   <h3 key="h3-1">
     <span style={styles.name}>返回状态:</span>
-    <span style={styles.label}>isSuccessed</span>
+    <span style={styles.label}>code</span>
     <span style={styles.type}>[Boolean]</span>
     <span style={styles.desc} />
   </h3>,
@@ -46,7 +57,7 @@ const getFormat = [
   </h3>,
   <h3 key="h3-3">
     <span style={styles.name}>返回数据:</span>
-    <span style={styles.label}>extData</span>
+    <span style={styles.label}>data</span>
     <span style={styles.type}>[Array]</span>
     <span style={styles.desc} />
   </h3>,
@@ -54,6 +65,13 @@ const getFormat = [
 // 获取接口描述的函数
 const getDesc = (apiSort, apiDesc, apiFormat = getFormat) =>
   [<h2 key="h2-1">{`${apiSort} ${apiDesc}`}</h2>].concat(apiFormat);
+
+// 获取接口返回的函数
+const getBody = (opts, code = true) => ({
+  code,
+  message: opts.message || messageSuccess,
+  data: opts.data || [],
+});
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 // "POST /api/forms": (req, res) => {
@@ -77,11 +95,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: spreadData,
-    },
+    $body: getBody({ data: spreadData }),
   },
   // 获取集中器列表
   'GET /api/custom/fetchconcentrator': {
@@ -96,11 +110,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: concentratorData,
-    },
+    $body: getBody({ data: concentratorData }),
   },
   // 获取扩频表 > 发货记录列表
   'GET /api/custom/fetchshipping': {
@@ -115,11 +125,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: shippingData,
-    },
+    $body: getBody({ data: shippingData }),
   },
   // 获取物联网表 > 物联网表列表
   'GET /api/custom/fetchnblot': {
@@ -134,11 +140,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: nblotData,
-    },
+    $body: getBody({ data: nblotData }),
   },
   // 获取物联网表 > 发货记录列表
   'GET /api/custom/nblot/fetchshipping': {
@@ -153,11 +155,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: shippingData,
-    },
+    $body: getBody({ data: shippingData }),
   },
   // 获取异常报警 > 扩频表列表
   'GET /api/custom/unusual/fetchspread': {
@@ -172,11 +170,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: unusualData,
-    },
+    $body: getBody({ data: unusualData }),
   },
   // 获取异常报警 > 物联网表列表
   'GET /api/custom/unusual/fetchnblot': {
@@ -191,11 +185,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: unusualData,
-    },
+    $body: getBody({ data: unusualData }),
   },
   // [业务数据监控]
   // 获取扩频表 > 扩频表列表
@@ -211,11 +201,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: spreadData,
-    },
+    $body: getBody({ data: spreadData }),
   },
   // 获取集中器列表
   'GET /api/monitor/fetchconcentrator': {
@@ -230,11 +216,7 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: concentratorData,
-    },
+    $body: getBody({ data: concentratorData }),
   },
   // 获取物联网表 > 物联网表列表
   'GET /api/monitor/fetchnblot': {
@@ -249,31 +231,19 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: nblotData,
-    },
+    $body: getBody({ data: nblotData }),
   },
   // 扩频表 - 更新配置
   'POST /api/monitor/spread/fetchconfig': {
     $desc: getDesc(apiDataMonitor, '更新配置'),
     $params: dutyParams,
-    $body: {
-      isSuccessed: true,
-      message: saveSuccess,
-      extData: [],
-    },
+    $body: getBody({ message: saveSuccess }),
   },
   // 物联网表 - 更新配置
   'POST /api/monitor/nblot/fetchconfig': {
     $desc: getDesc(apiDataMonitor, '更新配置'),
     $params: dutyParams,
-    $body: {
-      isSuccessed: true,
-      message: saveSuccess,
-      extData: [],
-    },
+    $body: getBody({ message: saveSuccess }),
   },
   // [燃气公司运营]
   // 获取公司列表
@@ -289,21 +259,83 @@ const proxy = {
         exp: 1,
       },
     },
-    $body: {
-      isSuccessed: true,
-      message: messageSuccess,
-      extData: businessCompanyData,
-    },
+    $body: getBody({ data: businessCompanyData }),
   },
   // 更新配置
   'POST /api/company/fetchconfig': {
     $desc: getDesc(apiCompany, '更新配置'),
     $params: businessParams,
-    $body: {
-      isSuccessed: true,
-      message: saveSuccess,
-      extData: [],
+    $body: getBody({ message: saveSuccess }),
+  },
+  // [登录/安全退出]
+  // 登录
+  'POST /api/admin/loginon': {
+    $desc: getDesc(apiLogin, '实现用户登录'),
+    $params: {
+      userName: {
+        desc: `登录用户名: ${typeString}`,
+        exp: 'kevin',
+      },
+      passWord: {
+        desc: `登录密码: ${typeString}`,
+        exp: '●●●●●●',
+      },
     },
+    $body: getBody({ message: loginSuccess }),
+  },
+  // 安全退出
+  'POST /api/admin/loginout': {
+    $desc: getDesc(apiLoginOut, '实现用户安全退出'),
+    $params: {},
+    $body: getBody({ message: loginOutSuccess }),
+  },
+  // 获取登录用户信息（资料）
+  'GET /api/admin/getuser': {
+    $desc: getDesc(apiGetUser, '获取登录用户信息（资料）'),
+    $params: {},
+    $body: getBody({ data: userData }),
+  },
+  // 修改登录密码
+  'POST /api/admin/updatepwd': {
+    $desc: getDesc(apiUpdatePwd, '修改用户的登录密码'),
+    $params: {
+      oldpwd: {
+        desc: `旧登录密码: ${typeString}`,
+        exp: '●●●●●●',
+      },
+      newpwd: {
+        desc: `新登录密码: ${typeString}`,
+        exp: '●●●●●●',
+      },
+    },
+    $body: getBody({ message: updatePwdSuccess }),
+  },
+  // 修改登录用户信息（资料）
+  'POST /api/admin/updateuser': {
+    $desc: getDesc(apiUpdateUser, '修改登录用户信息（资料）'),
+    $params: {
+      nickname: {
+        desc: `昵称: ${typeString}`,
+        exp: 'bolton',
+      },
+      role: {
+        desc: `权限: ${typeNumber}`,
+        exp: '1000',
+      },
+      sex: {
+        desc: `性别: ${typeNumber}`,
+        exp: '0',
+      },
+      tel: {
+        desc: `手机号码: ${typeString}`,
+        exp: '13912345678',
+      },
+      email: {
+        desc: `电子邮箱: ${typeString}`,
+        exp: 'example@example.com',
+      },
+    },
+    $body: getBody({ message: updateSuccess }),
   },
 };
 
