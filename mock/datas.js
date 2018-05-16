@@ -1,4 +1,4 @@
-import fields, { wordLimit } from './fields';
+import fields, { wordLimit, tagRequired, tagNoRequired } from './fields';
 
 // 责任部门（或责任人）
 const dutyCollection = {
@@ -11,30 +11,38 @@ const dutyCollection = {
 // 配置 传递的参数
 // duty
 export const dutyParams = {
+  meterCode: {
+    desc: fields.meterCode,
+    exp: `${tagRequired} B000X0001`,
+  },
   department: {
     desc: fields.department,
-    exp: '技术中心(办公室)',
+    exp: `${tagNoRequired} 技术中心(办公室)`,
   },
   name: {
     desc: fields.name,
-    exp: '鱼子酱',
+    exp: `${tagNoRequired} 鱼子酱`,
   },
   phone: {
     desc: fields.phone,
-    exp: '028-12345678',
+    exp: `${tagNoRequired} 028-12345678`,
   },
   tel: {
     desc: fields.tel,
-    exp: '13912345678',
+    exp: `${tagNoRequired} 13912345678`,
   },
   email: {
     desc: fields.email,
-    exp: 'example123@qq.com',
+    exp: `${tagNoRequired} example123@qq.com`,
   },
 };
 // business
 export const businessParams = {
   // 燃气公司
+  companyCode: {
+    desc: fields.companyCode,
+    exp: '海力智能燃气示范公司',
+  },
   description: {
     desc: fields.description,
     exp: `(${wordLimit})`,
@@ -126,7 +134,7 @@ export const spreadData = [
         updateAt: `调价时间 ${fields.updateAt}`,
       },
     ],
-    [`duty: '${fields.duty}'`]: dutyCollection,
+    // [`duty: '${fields.duty}'`]: dutyCollection,
     [`directive: '${fields.directive}'`]: directiveCollection,
     [`user: ${fields.user}`]: {
       userName: fields.userName,
@@ -185,7 +193,7 @@ export const nblotData = [
         updateAt: `调价时间 ${fields.updateAt}`,
       },
     ],
-    [`duty: '${fields.duty}'`]: dutyCollection,
+    // [`duty: '${fields.duty}'`]: dutyCollection,
     [`directive: '${fields.directive}'`]: directiveCollection,
     [`user: ${fields.user}`]: {
       userName: fields.userName,
@@ -196,6 +204,9 @@ export const nblotData = [
     updateAt: `更新时间 ${fields.updateAt}`,
   },
 ];
+
+// 责任部门（或责任人）
+export const dutyData = [dutyCollection];
 
 // 发货记录
 export const shippingData = [
@@ -221,7 +232,7 @@ export const unusualData = [
     alarmNum: fields.alarmNum,
     alarmStatus: fields.alarmStatus,
     alarmAt: fields.alarmAt,
-    [`duty: '${fields.duty}'`]: dutyCollection,
+    // [`duty: '${fields.duty}'`]: dutyCollection,
     [`directive: '${fields.directive}'`]: directiveCollection,
   },
 ];

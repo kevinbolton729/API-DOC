@@ -7,6 +7,7 @@ import {
   apiUpdateUser,
   apiUpdatePwd,
   apiCustom,
+  apiDuty,
   apiDataMonitor,
   apiCompany,
   typeNumber,
@@ -27,6 +28,7 @@ import {
   businessCompanyData,
   unusualData,
   userData,
+  dutyData,
   dutyParams,
   businessParams,
 } from './mock/datas';
@@ -46,7 +48,7 @@ const getFormat = [
   <h3 key="h3-1">
     <span style={styles.name}>返回状态:</span>
     <span style={styles.label}>code</span>
-    <span style={styles.type}>[Boolean]</span>
+    <span style={styles.type}>[Number]</span>
     <span style={styles.desc} />
   </h3>,
   <h3 key="h3-2">
@@ -67,7 +69,7 @@ const getDesc = (apiSort, apiDesc, apiFormat = getFormat) =>
   [<h2 key="h2-1">{`${apiSort} ${apiDesc}`}</h2>].concat(apiFormat);
 
 // 获取接口返回的函数
-const getBody = (opts, code = true) => ({
+const getBody = (opts, code = 0) => ({
   code,
   message: opts.message || messageSuccess,
   data: opts.data || [],
@@ -233,18 +235,30 @@ const proxy = {
     },
     $body: getBody({ data: nblotData }),
   },
-  // 扩频表 - 更新配置
-  'POST /api/monitor/spread/fetchconfig': {
-    $desc: getDesc(apiDataMonitor, '更新配置'),
+  // [责任部门（或责任人）]
+  // 获取责任部门（或责任人）
+  'GET /api/duty/fetchduty': {
+    $desc: getDesc(apiDuty, '获取责任部门（或责任人）'),
+    $params: {
+      meterCode: {
+        desc: `表具编号: ${typeString}`,
+        exp: 'B000X0002',
+      },
+    },
+    $body: getBody({ data: dutyData }),
+  },
+  // 新增（或更新）责任部门（或责任人）
+  'POST /api/duty/fetchconfig': {
+    $desc: getDesc(apiDuty, '新增（或更新）责任部门（或责任人）'),
     $params: dutyParams,
     $body: getBody({ message: saveSuccess }),
   },
-  // 物联网表 - 更新配置
-  'POST /api/monitor/nblot/fetchconfig': {
-    $desc: getDesc(apiDataMonitor, '更新配置'),
-    $params: dutyParams,
-    $body: getBody({ message: saveSuccess }),
-  },
+  // // 物联网表 - 更新配置
+  // 'POST /api/monitor/nblot/fetchconfig': {
+  //   $desc: getDesc(apiDataMonitor, '更新配置'),
+  //   $params: dutyParams,
+  //   $body: getBody({ message: saveSuccess }),
+  // },
   // [燃气公司运营]
   // 获取公司列表
   'GET /api/company/fetchcompany': {
@@ -299,6 +313,10 @@ const proxy = {
   'POST /api/admin/updatepwd': {
     $desc: getDesc(apiUpdatePwd, '修改用户的登录密码'),
     $params: {
+      id: {
+        desc: `用户编号: ${typeString}`,
+        exp: 'U0001000X',
+      },
       oldpwd: {
         desc: `旧登录密码: ${typeString}`,
         exp: '●●●●●●',
@@ -314,6 +332,10 @@ const proxy = {
   'POST /api/admin/updateuser': {
     $desc: getDesc(apiUpdateUser, '修改登录用户信息（资料）'),
     $params: {
+      id: {
+        desc: `用户编号: ${typeString}`,
+        exp: 'U0001000X',
+      },
       nickname: {
         desc: `昵称: ${typeString}`,
         exp: 'bolton',

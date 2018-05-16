@@ -7,6 +7,7 @@ const group = {
   dataMonitor: '业务数据监控',
   custom: '客户服务监控',
   company: '燃气公司运营',
+  duty: '责任部门（或责任人）',
 };
 
 const api = '接口';
@@ -28,6 +29,9 @@ export const loginSuccess = '登录成功';
 export const loginOutSuccess = '已安全退出';
 export const updatePwdSuccess = '登录密码已修改';
 export const updateSuccess = '更新成功';
+// 标识
+export const tagRequired = '[必填]';
+export const tagNoRequired = '[选填]';
 // 字数限制
 export const wordLimit = '字数不超过200字';
 // 接口
@@ -39,6 +43,7 @@ export const apiUpdateUser = `[${group.updateUser}] ${api}:`; // eg.[修改用�
 export const apiCustom = `[${group.custom}] ${api}:`; // eg.[客户服务监控] 接口:
 export const apiDataMonitor = `[${group.dataMonitor}] ${api}:`; // eg.[业务数据监控] 接口:
 export const apiCompany = `[${group.company}] ${api}:`; // eg.[燃气公司运营] 接口:
+export const apiDuty = `[${group.duty}] ${api}:`; // eg.[责任部门（或责任人）] 接口:
 
 // 字段类型
 export const typeNumber = `[${fieldType}: ${number}]`; // eg.[字段类型: Number]
