@@ -127,6 +127,7 @@ const fields = {
   deliveryAt: `发货时间 ${typeUnix13}`,
   // 异常报警
   alarmNum: `报警次数 ${typeNumber}`,
+  alarmType: `报警类型 ${typeString} eg. 充值 / 开户 等`,
   alarmStatus: `预警状态 ${typeNumber} 0:异常 1:正常`,
   alarmAt: `报警时间 ${typeUnix13}`,
   // 燃气公司运营
