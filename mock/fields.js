@@ -51,7 +51,7 @@ export const typeString = `[${fieldType}: ${string}]`; // eg.[字段类型: Stri
 export const typeBoolean = `[${fieldType}: ${boolean}]`; // eg.[字段类型: Boolean]
 export const typeArray = `[${fieldType}: ${array}]`; // eg.[字段类型: Array]
 export const typeObject = `[${fieldType}: ${object}]`; // eg.[字段类型: Object]
-export const typeUnix13 = `[${fieldType}: ${unix13}]`; // eg.[字段类型: Unix(13位)]
+export const typeUnix13 = `[${fieldType}: ${unix13}] eg. 1524032521415`; // eg.[字段类型: Unix(13位)]
 
 // 字段定义
 const fields = {
