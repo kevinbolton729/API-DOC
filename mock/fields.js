@@ -147,7 +147,7 @@ const fields = {
   userid: `登录用户编码 ${typeString}`,
   nickname: `用户昵称(界面显示) ${typeString}`,
   portrait: `头像地址 ${typeString}`,
-  role: `用户权限 ${typeNumber}`,
-  sex: `用户权限 ${typeNumber} eg. 0:女 1:男`,
+  role: `用户权限编号 ${typeNumber}`,
+  sex: `用户性别${typeNumber} eg. 0:女 1:男`,
 };
 export default fields;

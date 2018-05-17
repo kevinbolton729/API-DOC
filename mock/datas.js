@@ -264,6 +264,12 @@ export const businessCompanyData = [
   },
 ];
 
+// 登录成功返回数据
+export const loginData = [
+  {
+    role: fields.role,
+  },
+];
 // 登录用户信息（资料）
 export const userData = [
   {

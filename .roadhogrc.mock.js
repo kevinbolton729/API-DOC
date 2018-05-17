@@ -27,6 +27,7 @@ import {
   shippingData,
   businessCompanyData,
   unusualData,
+  loginData,
   userData,
   dutyData,
   dutyParams,
@@ -295,7 +296,7 @@ const proxy = {
         exp: '●●●●●●',
       },
     },
-    $body: getBody({ message: loginSuccess }),
+    $body: getBody({ data: loginData, message: loginSuccess }),
   },
   // 安全退出
   'POST /api/admin/loginout': {
