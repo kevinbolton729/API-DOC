@@ -94,7 +94,7 @@ const fields = {
   // 集中器
   concentrator: '集中器',
   concentratorCode: `集中器编号 ${typeString}`,
-  cardStatus: `通信卡状态 ${typeNumber} 0:异常 1:正常`,
+  cardStatus: `集中器状态 ${typeNumber} 0:异常 1:正常`,
   factNum: `实际挂表数 ${typeNumber} eg. 53`,
   totalNum: `全部表数 ${typeNumber} eg. 200`,
   setupAddress: `安装地址 ${typeString} eg. 二仙桥崔家店路天空城`,
