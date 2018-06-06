@@ -240,12 +240,12 @@ const proxy = {
   // 获取责任部门（或责任人）
   'GET /api/duty/fetchduty': {
     $desc: getDesc(apiDuty, '获取责任部门（或责任人）'),
-    $params: {
-      meterCode: {
-        desc: `表具编号: ${typeString}`,
-        exp: 'B000X0002',
-      },
-    },
+    // $params: {
+    //   dutyCode: {
+    //     desc: `信息编号: ${typeString}`,
+    //     exp: 'DUTY00001 没有时请传空字符串',
+    //   },
+    // },
     $body: getBody({ data: dutyData }),
   },
   // 新增（或更新）责任部门（或责任人）

@@ -105,6 +105,7 @@ const fields = {
   uploadStatus: `数据上传状态 ${typeNumber} 0:失败 1:成功`,
   // 责任部门（或责任人）
   duty: '责任部门（或责任人）',
+  dutyCode: `DUTY00001 ${typeString}`, // 信息编号
   department: `部门 ${typeString}`,
   name: `姓名 ${typeString}`,
   phone: `办公电话 ${typeString}`,
